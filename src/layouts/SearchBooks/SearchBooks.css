@@ -1,0 +1,7 @@
+.container__input {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row !important;
+    align-items: baseline;
+    gap: 16px;
+}

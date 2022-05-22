@@ -14,30 +14,26 @@ const initialState: BooksState = {
     error: null
 }
 
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async (pageNumber: number) => {
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
     try {
-        const response = await axios.get(getAllBooksPerPage(pageNumber));
+        const response = await axios.get(getAllBooksPerPage());
         return response.data.results;
     } catch (error: any) {
         return error.message;
     }
-
 });
 
 export const bookSlice = createSlice({
     name: "books",
     initialState,
     reducers: {
-        bookFavorite: {
-            reducer(state: any, action: any) {
-                const { id } = action.payload;
-                const existingBook = state.books.books.find((book: any) => book.id === id)
-                if (existingBook) {
-                    existingBook.favorite = true;
-                }
-
+        bookFavorite(state, action: any) {
+            const id = action.payload;
+            const findBook = state.books.find((book: any) => book.id === id);
+            if (findBook) {
+                findBook.favorite = !findBook.favorite
             }
-        } as any
+        }
     },
     extraReducers(builder: any) {
         builder
@@ -49,7 +45,6 @@ export const bookSlice = createSlice({
                 const loadedBooks = action.payload.map((book: any) => {
                     book.favorite = false
                     return book
-
                 });
                 state.books = state.books?.concat(loadedBooks);
             })
@@ -62,6 +57,8 @@ export const bookSlice = createSlice({
 
 const booksReducer = bookSlice.reducer;
 export default booksReducer;
+
+export const { bookFavorite } = bookSlice.actions as any;
 
 export const seletcAllBooks = (state: any) => state.books.books;
 export const getBookStatus = (state: any) => state.books.status;

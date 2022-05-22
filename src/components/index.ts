@@ -1,4 +1,4 @@
 export { Header } from './Header/Header';
-export { Button } from './Button/Button';
+export { ButtonComponent } from './Button/ButtonComponent';
 export { Toaster } from './Toaster/Toaster';
 export { Footer } from './Footer/Footer';

@@ -1,13 +1,23 @@
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import { BookTable } from './layouts/BookList/components';
+import { Footer, Header } from './components';
+import { Home, NotFound, Search } from './pagination';
 
-function App() {
+export const App = () => {
   return (
     <div className="App">
-      <BookTable />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='search/:titleBook' element={<Search />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
