@@ -3,14 +3,13 @@ import { Table, TableContainer, Tbody, Tr } from '@chakra-ui/react';
 import { BookTableBody, BookTableHeader } from './components';
 
 interface BookTableProps {
-  status: any;
   books: any[];
 };
 
-export const BookTable: FC<BookTableProps> = ({ status, books }) => {
+export const BookTable: FC<BookTableProps> = ({ books }) => {
   return (
     <div>
-      {status === 'succeeded' ? <TableContainer>
+      <TableContainer>
         <Table variant='striped' colorScheme='teal' size='lg'>
           <BookTableHeader />
           <Tbody>
@@ -28,8 +27,6 @@ export const BookTable: FC<BookTableProps> = ({ status, books }) => {
           </Tbody>
         </Table>
       </TableContainer>
-        : <h1>...Loading</h1>
-      }
     </div>
   )
 }

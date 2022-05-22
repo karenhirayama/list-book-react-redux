@@ -11,7 +11,7 @@ export const App = () => {
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='search/:bookTitle' element={<SearchResult />} />
+          <Route path='search/:searchWord' element={<SearchResult />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />

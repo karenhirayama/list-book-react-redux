@@ -20,7 +20,7 @@ export const SearchBooks = () => {
           pointerEvents='none'
           children={<Search2Icon color='gray' />}
         />
-        <Input type='text' variant='outline' placeholder='Search book by title' size='md'
+        <Input type='text' variant='outline' placeholder='Search book' size='md'
           value={bookTitle}
           onChange={(e: any) => setBookTitle(e.target.value)} />
       </InputGroup>

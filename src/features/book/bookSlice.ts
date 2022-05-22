@@ -1,22 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { getAllBooksPerPage } from '../../api/api';
+import { getAllBooksPerPage, getSearchBookByWord } from '../../api/api';
 
 interface BooksState {
     books: any[];
+    searchBooks: any[],
     status: string;
     error: any;
 }
 
 const initialState: BooksState = {
     books: [],
+    searchBooks: [],
     status: 'idle',
     error: null
 }
 
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async (pageNumber: number) => {
     try {
-        const response = await axios.get(getAllBooksPerPage());
+        const response = await axios.get(getAllBooksPerPage(pageNumber));
         return response.data.results;
     } catch (error: any) {
         return error.message;
@@ -60,6 +62,7 @@ export default booksReducer;
 
 export const { bookFavorite } = bookSlice.actions as any;
 
-export const seletcAllBooks = (state: any) => state.books.books;
+export const selectAllBooks = (state: any) => state.books.books;
 export const getBookStatus = (state: any) => state.books.status;
 export const getBooksErrror = (state: any) => state.books.error;
+export const selectAllSearchBooks = (state: any) => state.books;

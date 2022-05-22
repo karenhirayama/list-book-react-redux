@@ -3,6 +3,7 @@ import { Container, Td } from "@chakra-ui/react";
 import { StarIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
 import { bookFavorite } from "../../../features";
+import { useParams } from 'react-router-dom';
 
 interface BookTableHeaderProps {
   id: number;
@@ -20,28 +21,33 @@ interface ResourcesProps {
 
 export const BookTableBody: FC<BookTableHeaderProps> = ({ id, favorite, author, title, resources }) => {
   const dispatch = useDispatch();
+  const params = useParams();
+  const isHomePage = Object.values(params).length === 0;
   const linkRead: any = resources?.find((resource: ResourcesProps) => resource.uri.includes('h.htm'));
 
   const handleFavorite = (id: number) => {
     dispatch(bookFavorite(id) as any)
   };
-
   return (
     <>
-      <Td>
-        <Container centerContent>
-          <StarIcon
-            color={favorite ? 'yellow' : 'gray'}
-            onClick={() => handleFavorite(id)}
-          />
-        </Container>
-      </Td>
+      {isHomePage ?
+        <Td>
+          <Container centerContent>
+            <StarIcon
+              color={favorite ? 'yellow' : 'gray'}
+              onClick={() => handleFavorite(id)}
+            />
+          </Container>
+        </Td> : null
+      }
       <Td>{title}</Td>
       <Td>{author}</Td>
       <Td>
-        <a href={encodeURI(linkRead?.uri)} target={"_blank"} rel={"noreferrer"}>
-          <ExternalLinkIcon />
-        </a>
+        <Container centerContent>
+          <a href={encodeURI(linkRead?.uri)} target={"_blank"} rel={"noreferrer"}>
+            <ExternalLinkIcon />
+          </a>
+        </Container>
       </Td>
     </>
   )

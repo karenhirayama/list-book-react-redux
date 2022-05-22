@@ -1,0 +1,18 @@
+.header__container {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.header__title {
+    margin-top: 16px;
+    margin-bottom: -5px;
+    color: teal;
+    font-size: large;
+    font-weight: 700;
+}
+
+.header__text {
+    font-size: small;
+    font-style: italic;
+}
