@@ -3,12 +3,14 @@ import { Input, InputGroup, InputLeftElement, Stack } from '@chakra-ui/react';
 import { useState } from 'react';
 import { Search2Icon } from '@chakra-ui/icons';
 import { ButtonComponent } from '../../components';
+import { useNavigate } from 'react-router-dom';
 
 export const SearchBooks = () => {
   const [bookTitle, setBookTitle] = useState('');
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    console.log(bookTitle)
+    navigate(`/search/${bookTitle}`);
   }
 
   return (

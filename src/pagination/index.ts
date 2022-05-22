@@ -1,3 +1,3 @@
 export { Home } from './Home/Home';
-export { Search } from './Search/Search';
+export { SearchResult } from './SearchResult/SearchResult';
 export { NotFound } from './NotFound/NotFound'

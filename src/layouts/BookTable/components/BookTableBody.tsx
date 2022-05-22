@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Container, Td } from "@chakra-ui/react";
 import { StarIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
-import { bookFavorite } from "../../../../features";
+import { bookFavorite } from "../../../features";
 
 interface BookTableHeaderProps {
   id: number;
@@ -24,7 +24,8 @@ export const BookTableBody: FC<BookTableHeaderProps> = ({ id, favorite, author, 
 
   const handleFavorite = (id: number) => {
     dispatch(bookFavorite(id) as any)
-  }
+  };
+
   return (
     <>
       <Td>

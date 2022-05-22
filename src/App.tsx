@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { Footer, Header } from './components';
-import { Home, NotFound, Search } from './pagination';
+import { Home, NotFound, SearchResult } from './pagination';
 
 export const App = () => {
   return (
@@ -11,7 +11,7 @@ export const App = () => {
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='search/:titleBook' element={<Search />} />
+          <Route path='search/:bookTitle' element={<SearchResult />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
