@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { getSearchBookByWord } from '../../api';
 import { ButtonComponent } from '../../components';
 import { BookTable } from '../../layouts';
+import { NotFound } from '../index';
 
 export const SearchResult = () => {
   const [bookSearch, setBooksSearch] = useState([]);
@@ -36,7 +37,7 @@ export const SearchResult = () => {
 
   useEffect(() => {
     if (bookSearch !== []) return setMaxResultPages(Math.ceil(maxNumberResponseApi / 10))
-  }, [searchWord]);
+  }, [searchWord, pageNumberApi]);
 
   const handleShowPreviusResults = () => {
     setPageNumberApi(pageNumberApi - 1);
@@ -49,26 +50,32 @@ export const SearchResult = () => {
   const handleHomePage = () => {
     navigate('/');
   };
-
+  console.log(maxResultPages, maxNumberResponseApi)
   return (
     <>
       {isLoading ? <h1>Loading</h1> :
-        <div>
-          <BookTable
-            books={bookSearch}
-          />
-          <div className='searchResult__btn'>
-            {pageNumberApi > 1 ?
-              <ButtonComponent buttonText="Previous" handleClick={handleShowPreviusResults} />
-              : null
-            }
-            <ButtonComponent buttonText="Back to Homepage" handleClick={handleHomePage} />
-            {pageNumberApi <= maxResultPages ?
-              <ButtonComponent buttonText="Next" handleClick={handleShowMoreResults} />
-              : null
-            }
-          </div>
-        </div>
+        <>
+          {bookSearch.length === 0 ? <NotFound /> :
+            <div>
+              <div style={{textAlign: 'initial'}}>
+                <h1>Search by: <span style={{color: 'teal'}}>{searchWord}</span></h1>
+              </div>
+              <BookTable
+                books={bookSearch}
+              />
+              <div className='searchResult__btn'>
+                {pageNumberApi > 1 ?
+                  <ButtonComponent buttonText="Previous" handleClick={handleShowPreviusResults} />
+                  : null
+                }
+                <ButtonComponent buttonText="Back to Homepage" handleClick={handleHomePage} />
+                {pageNumberApi < maxResultPages ?
+                  <ButtonComponent buttonText="Next" handleClick={handleShowMoreResults} />
+                  : null
+                }
+              </div>
+            </div>}
+        </>
       }
     </>
   )
