@@ -22,10 +22,7 @@ export const SearchResult = () => {
         const response = await axios.get(getSearchBookByWord(searchWord, pageNumberApi));
         setMaxNumberResponseApi(response.data.count);
         setIsLoading(false);
-        return setBooksSearch(response.data.results.map((book: any) => {
-          book.favorite = false
-          return book
-        }));
+        return setBooksSearch(response.data.results);
       }
       catch (error: any) {
         return error.message;

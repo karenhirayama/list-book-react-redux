@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 
 interface BookTableHeaderProps {
   id: number;
-  favorite: boolean;
+  favorite?: boolean;
   author: string;
   title: string;
   resources: any[];
