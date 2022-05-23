@@ -22,7 +22,7 @@ The button "SEE MORE" load more books.
 
 ### Search results page
 
-<img src="./searchPage.png" alt="Page with results of search" ></img>
+<img src="./searchResultPage.png" alt="Page with results of search" ></img>
 
 The page displays the results of the user's search.
 
