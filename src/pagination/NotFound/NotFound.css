@@ -1,0 +1,24 @@
+.notFound__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 77vh;
+}
+
+.notFound__title {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.notFound__title h1 {
+    font-size: 48px;
+}
+
+.notFound__comeback {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}

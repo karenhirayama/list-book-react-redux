@@ -4,14 +4,12 @@ import { getAllBooksPerPage, getSearchBookByWord } from '../../api/api';
 
 interface BooksState {
     books: any[];
-    searchBooks: any[],
     status: string;
     error: any;
 }
 
 const initialState: BooksState = {
     books: [],
-    searchBooks: [],
     status: 'idle',
     error: null
 }

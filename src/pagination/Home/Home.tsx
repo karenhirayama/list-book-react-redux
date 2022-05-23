@@ -9,17 +9,18 @@ export const Home = () => {
   const [pageNumberApi, setPageNumberApi] = useState(1)
   const bookStatus = useSelector((state: any) => state.books.status);
   const books = useSelector(selectAllBooks);
+  const maxNumberPageApi = 6578;
 
   const dispatch = useDispatch();
   useEffect(() => {
     if (bookStatus === 'idle') {
       dispatch(fetchBooks(1) as any)
     }
-  }, [bookStatus, dispatch]);
+  }, [bookStatus]);
 
   const handleSeeMoreBooks = () => {
+    dispatch(fetchBooks(pageNumberApi + 1) as any);
     setPageNumberApi(pageNumberApi + 1);
-    dispatch(fetchBooks(pageNumberApi) as any)
   };
 
   return (
@@ -30,17 +31,20 @@ export const Home = () => {
           <BookTable
             books={books}
           />
-          <ButtonComponent buttonText="See more" handleClick={handleSeeMoreBooks} />
+          {pageNumberApi <= maxNumberPageApi ?
+            <ButtonComponent buttonText="See more" handleClick={handleSeeMoreBooks} />
+            : null
+          }
         </>
       }
       {bookStatus === 'loading' &&
         <>
-        <h1>Loading</h1>
+          <h1>Loading</h1>
         </>
       }
       {bookStatus === 'failed' &&
         <>
-        <NotFound /> 
+          <NotFound />
         </>
       }
     </>

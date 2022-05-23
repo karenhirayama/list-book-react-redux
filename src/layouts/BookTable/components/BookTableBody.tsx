@@ -1,4 +1,5 @@
 import { FC } from "react";
+import './BookTableBody.css'
 import { Container, Td } from "@chakra-ui/react";
 import { StarIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
@@ -40,7 +41,11 @@ export const BookTableBody: FC<BookTableHeaderProps> = ({ id, favorite, author, 
           </Container>
         </Td> : null
       }
-      <Td>{title}</Td>
+      <Td>
+        <div title={title} className="tableBody__title">
+          {title}
+        </div>
+      </Td>
       <Td>{author}</Td>
       <Td>
         <Container centerContent>
